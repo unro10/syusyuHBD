@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYUSYU Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+        linear-gradient(rgba(255,245,248,0.92), rgba(255,240,245,0.92)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop");
+
+    background-size:cover;
+    background-attachment:fixed;
+    color:#6d4053;
+    font-family:'Cinzel', serif;
+    overflow-x:hidden;
+}
+
+/* 프레임 */
+
+.frame{
+    width:92%;
+    max-width:1150px;
+
+    margin:40px auto;
+
+    background:rgba(255,255,255,0.78);
+
+    border:8px double #f4b6c8;
+
+    border-radius:35px;
+
+    padding:50px;
+
+    position:relative;
+
+    box-shadow:
+      0 0 30px rgba(255,182,193,0.35),
+      inset 0 0 20px rgba(255,255,255,0.8);
+}
+
+/* 상단 */
+
+.top-decoration{
+    text-align:center;
+    font-size:48px;
+    margin-bottom:15px;
+    color:#f08dac;
+}
+
+/* 제목 */
+
+.title{
+    text-align:center;
+}
+
+.title h1{
+    font-family:'Great Vibes', cursive;
+    font-size:90px;
+    color:#e77aa0;
+    text-shadow:0 0 15px rgba(255,182,193,0.4);
+}
+
+.title p{
+    font-size:22px;
+    letter-spacing:4px;
+    margin-top:10px;
+}
+
+/* 날짜 */
+
+.date{
+    text-align:center;
+    margin-top:18px;
+    color:#b36a84;
+    font-size:18px;
+}
+
+/* 떠다니는 하트 */
+
+.roses{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.rose{
+    position:absolute;
+    animation:float 10s linear infinite;
+    opacity:0.5;
+    font-size:24px;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(100vh) rotate(0deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:0.5;
+    }
+
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* 카운트다운 */
+
+.countdown-box{
+
+    margin-top:40px;
+
+    background:rgba(255,255,255,0.9);
+
+    border:2px solid #ffd6e4;
+
+    border-radius:30px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px rgba(255,182,193,0.15);
+}
+
+.countdown-box h2{
+
+    color:#df7ca1;
+
+    margin-bottom:18px;
+
+    font-size:34px;
+}
+
+#countdown{
+
+    font-size:38px;
+
+    color:#b85f82;
+
+    font-weight:600;
+
+    letter-spacing:2px;
+
+    line-height:1.6;
+}
+
+/* 비밀번호 */
+
+.password-box{
+
+    margin-top:45px;
+
+    background:rgba(255,255,255,0.9);
+
+    border:2px solid #ffd6e4;
+
+    border-radius:30px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px rgba(255,182,193,0.15);
+}
+
+.password-box h2{
+
+    color:#df7ca1;
+
+    margin-bottom:15px;
+
+    font-size:32px;
+}
+
+.password-box p{
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+    color:#9b6076;
+}
+
+.password-box input{
+
+    width:260px;
+
+    max-width:90%;
+
+    padding:14px 20px;
+
+    border:none;
+
+    border-radius:999px;
+
+    outline:none;
+
+    background:#fff8fb;
+
+    border:2px solid #ffd4e3;
+
+    font-size:16px;
+
+    text-align:center;
+
+    color:#7a4e63;
+
+    font-family:'Cinzel', serif;
+}
+
+/* 버튼 */
+
+button{
+
+    margin-top:20px;
+
+    padding:15px 32px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#f6a9c2;
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    font-family:'Cinzel', serif;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#eb8fb0;
+}
+
+/* 사진 */
+
+.gallery{
+
+    margin-top:55px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+}
+
+.card{
+
+    background:#fff9fb;
+
+    border:3px solid #ffd2e0;
+
+    border-radius:25px;
+
+    padding:12px;
+
+    position:relative;
+
+    transition:0.35s;
+
+    box-shadow:0 8px 18px rgba(255,182,193,0.25);
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.02);
+}
+
+.card::before{
+
+    content:"🎀";
+
+    position:absolute;
+
+    top:-18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:30px;
+}
+
+.card img{
+
+    width:100%;
+
+    height:320px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+}
+
+/* 메인 편지 */
+
+.letter{
+
+    margin-top:60px;
+
+    background:rgba(255,250,252,0.9);
+
+    border:2px dashed #efadc3;
+
+    border-radius:30px;
+
+    padding:40px;
+
+    line-height:2.2;
+
+    text-align:center;
+
+    font-size:18px;
+
+    position:relative;
+}
+
+.letter::before{
+
+    content:"✧";
+
+    position:absolute;
+
+    top:10px;
+
+    left:20px;
+
+    font-size:28px;
+
+    color:#f2a7bf;
+}
+
+.letter::after{
+
+    content:"✧";
+
+    position:absolute;
+
+    bottom:10px;
+
+    right:20px;
+
+    font-size:28px;
+
+    color:#f2a7bf;
+}
+
+/* 방명록 */
+
+.guestbook{
+
+    margin-top:60px;
+
+    background:rgba(255,255,255,0.88);
+
+    border:2px solid #ffd4e3;
+
+    border-radius:35px;
+
+    padding:40px;
+}
+
+.guestbook h2{
+
+    text-align:center;
+
+    color:#de7ea1;
+
+    margin-bottom:35px;
+
+    font-size:36px;
+}
+
+/* 배치 */
+
+.guestbook-container{
+
+    display:flex;
+
+    gap:35px;
+
+    align-items:stretch;
+}
+
+/* 입력 */
+
+.input-area{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+/* 전시 */
+
+.messages-area{
+
+    flex:1.4;
+
+    background:rgba(255,248,251,0.9);
+
+    border-radius:28px;
+
+    padding:25px;
+
+    border:2px solid #ffd6e4;
+
+    min-height:420px;
+
+    overflow-y:auto;
+}
+
+/* textarea */
+
+textarea{
+
+    width:100%;
+
+    height:320px;
+
+    border:none;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    resize:none;
+
+    font-size:17px;
+
+    background:#fff8fb;
+
+    color:#7a4e63;
+
+    outline:none;
+
+    border:2px solid #ffd4e3;
+
+    font-family:'Cinzel', serif;
+
+    line-height:1.8;
+}
+
+/* 편지 카드 */
+
+.message-box{
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:22px;
+
+    border:2px dashed #ffd4e3;
+
+    margin-bottom:18px;
+
+    line-height:2;
+
+    animation:fadeIn 0.5s ease;
+
+    box-shadow:0 6px 15px rgba(255,182,193,0.15);
+
+    font-size:16px;
+
+    word-break:break-word;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* 스크롤바 */
+
+.messages-area::-webkit-scrollbar{
+    width:8px;
+}
+
+.messages-area::-webkit-scrollbar-thumb{
+    background:#f4b6c8;
+    border-radius:999px;
+}
+
+/* 푸터 */
+
+.footer{
+    text-align:center;
+    margin-top:45px;
+    color:#aa6b84;
+    font-size:14px;
+    letter-spacing:2px;
+}
+
+/* 모바일 */
+
+@media(max-width:900px){
+
+    .guestbook-container{
+        flex-direction:column;
+    }
+
+    .messages-area{
+        min-height:250px;
+    }
+
+    textarea{
+        height:220px;
+    }
+
+    .title h1{
+        font-size:65px;
+    }
+
+    #countdown{
+        font-size:28px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- 떠다니는 하트 -->
+
+<div class="roses">
+
+    <div class="rose" style="left:5%; animation-delay:2s;">❤️</div>
+    <div class="rose" style="left:15%; animation-delay:4s;">🧡</div>
+    <div class="rose" style="left:25%; animation-delay:1s;">💛</div>
+    <div class="rose" style="left:35%; animation-delay:5s;">💚</div>
+    <div class="rose" style="left:45%; animation-delay:3s;">💙</div>
+    <div class="rose" style="left:55%; animation-delay:6s;">💜</div>
+    <div class="rose" style="left:65%; animation-delay:2s;">🩷</div>
+    <div class="rose" style="left:75%; animation-delay:7s;">🤍</div>
+    <div class="rose" style="left:85%; animation-delay:4s;">💖</div>
+    <div class="rose" style="left:95%; animation-delay:1s;">❤️‍🔥</div>
+
+</div>
+
+<div class="frame">
+
+    <div class="top-decoration">
+       ✧ ♡ ⋆｡˚ 🎀 SYUSYU DAY 🎀 ˚｡⋆ ♡ ✧
+    </div>
+
+    <div class="title">
+        <h1>Happy Birthday</h1>
+        <p>SYUSYU</p>
+    </div>
+
+    <div class="date">
+        November 16, 2026
+    </div>
+
+    <!-- 카운트다운 -->
+
+    <div class="countdown-box">
+
+        <h2>🎂 Countdown to Syusyu Day 🎂</h2>
+
+        <div id="countdown">
+            loading...
+        </div>
+
+    </div>
+
+    <!-- 비밀번호 -->
+
+    <div class="password-box">
+
+        <h2>🎀 Secret Birthday Archive 🎀</h2>
+
+        <p>
+            비밀번호를 입력하면<br>
+            특별한 추억이 열려요 ✨
+        </p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="password..."
+        >
+
+        <br>
+
+        <button onclick="checkPassword()">
+            열기
+        </button>
+
+    </div>
+
+    <!-- 잠긴 콘텐츠 -->
+
+    <div id="lockedContent" style="display:none;">
+
+        <!-- 사진 -->
+
+        <div class="gallery">
+
+            <div class="card">
+                <img src="photo1.jpg" alt="photo1">
+            </div>
+
+            <div class="card">
+                <img src="photo2.jpg" alt="photo2">
+            </div>
+
+            <div class="card">
+                <img src="photo3.jpg" alt="photo3">
+            </div>
+
+        </div>
+
+        <!-- 편지 -->
+
+        <div class="letter">
+
+            슈슈언니! 생일 정말 축하해 🎂<br>
+
+            언니와 함께한 시간들이 내게 소중한 추억이 되었어<br>
+
+            앞으로도 우리 이쁜 추억 많이 만들자 🤍<br>
+
+            언제나 웃는 하루가 가득하길 바라 🥰<br><br>
+
+            - 웅니를 사랑하는 웅오가 -
+
+        </div>
+
+    </div>
+
+    <!-- 방명록 -->
+
+    <div class="guestbook">
+
+        <h2>💌 Birthday Letters 💌</h2>
+
+        <div class="guestbook-container">
+
+            <!-- 입력 -->
+
+            <div class="input-area">
+
+                <textarea
+                    id="messageInput"
+                    placeholder="슈슈에게 편지를 남겨주세요..."
+                ></textarea>
+
+                <button onclick="addMessage()">
+                    편지 남기기
+                </button>
+
+            </div>
+
+            <!-- 전시 -->
+
+            <div class="messages-area">
+
+                <div id="messageList"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        ✧ made for syusyu with love ✧
+    </div>
+
+</div>
+
+<script>
+
+/* 카운트다운 */
+
+function updateCountdown(){
+
+    const targetDate =
+        new Date("2026-11-16T00:00:00");
+
+    const now =
+        new Date();
+
+    const diff =
+        targetDate - now;
+
+    if(diff <= 0){
+
+        document.getElementById("countdown")
+            .innerHTML =
+            "🎉 HAPPY BIRTHDAY SYUSYU 🎉";
+
+        return;
+    }
+
+    const days =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    const hours =
+        Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+    const minutes =
+        Math.floor((diff / (1000 * 60)) % 60);
+
+    const seconds =
+        Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown")
+        .innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+setInterval(updateCountdown, 1000);
+
+updateCountdown();
+
+/* 비밀번호 */
+
+function checkPassword(){
+
+    const password =
+        document.getElementById("passwordInput").value;
+
+    const lockedContent =
+        document.getElementById("lockedContent");
+
+    const correctPassword = "syusyu1116";
+
+    if(password === correctPassword){
+
+        lockedContent.style.display = "block";
+
+        document.querySelector(".password-box")
+            .style.display = "none";
+    }
+
+    else{
+
+        alert("비밀번호가 틀렸어요 🎀");
+    }
+}
+
+/* 방명록 */
+
+function addMessage(){
+
+    const input =
+        document.getElementById("messageInput");
+
+    const messageList =
+        document.getElementById("messageList");
+
+    if(input.value.trim() === ""){
+
+        alert("편지를 입력해주세요 🎀");
+
+        return;
+    }
+
+    const newMessage =
+        document.createElement("div");
+
+    newMessage.className = "message-box";
+
+    newMessage.innerHTML =
+        "💗 " + input.value;
+
+    messageList.prepend(newMessage);
+
+    input.value = "";
+}
+
+</script>
+
+</body>
+</html>
