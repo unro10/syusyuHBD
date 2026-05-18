@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SYUSYU Birthday</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -238,7 +239,7 @@ button:hover{
     border-radius:18px;
 }
 
-/* 편지 */
+/* 메인 편지 */
 
 .letter{
     margin-top:60px;
@@ -406,15 +407,10 @@ textarea{
 <div class="roses">
 
     <div class="rose" style="left:5%; animation-delay:2s;">❤️</div>
-    <div class="rose" style="left:15%; animation-delay:4s;">🧡</div>
-    <div class="rose" style="left:25%; animation-delay:1s;">💛</div>
-    <div class="rose" style="left:35%; animation-delay:5s;">💚</div>
-    <div class="rose" style="left:45%; animation-delay:3s;">💙</div>
-    <div class="rose" style="left:55%; animation-delay:6s;">💜</div>
-    <div class="rose" style="left:65%; animation-delay:2s;">🩷</div>
-    <div class="rose" style="left:75%; animation-delay:7s;">🤍</div>
-    <div class="rose" style="left:85%; animation-delay:4s;">💖</div>
-    <div class="rose" style="left:95%; animation-delay:1s;">❤️‍🔥</div>
+    <div class="rose" style="left:15%; animation-delay:4s;">🩷</div>
+    <div class="rose" style="left:25%; animation-delay:1s;">🤍</div>
+    <div class="rose" style="left:35%; animation-delay:5s;">💖</div>
+    <div class="rose" style="left:45%; animation-delay:3s;">🎀</div>
 
 </div>
 
@@ -474,6 +470,8 @@ textarea{
 
     <div id="lockedContent" style="display:none;">
 
+        <!-- 사진 -->
+
         <div class="gallery">
 
             <div class="card">
@@ -489,6 +487,8 @@ textarea{
             </div>
 
         </div>
+
+        <!-- 편지 -->
 
         <div class="letter">
 
@@ -548,14 +548,12 @@ import {
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  orderBy
+  getDatabase,
+  ref,
+  push,
+  onValue
 }
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
 /* Firebase 설정 */
 
@@ -565,15 +563,16 @@ const firebaseConfig = {
 
   authDomain: "syusyu-birthday.firebaseapp.com",
 
+  databaseURL: "https://syusyu-birthday-default-rtdb.firebaseio.com",
+
   projectId: "syusyu-birthday",
 
   storageBucket: "syusyu-birthday.firebasestorage.app",
 
   messagingSenderId: "100415996978",
 
-  appId: "1:100415996978:web:9df17fd8fafacac1dbe82b",
+  appId: "1:100415996978:web:9df17fd8fafacac1dbe82b"
 
-  measurementId: "G-FQE85JF84G"
 };
 
 /* Firebase 시작 */
@@ -582,7 +581,7 @@ const app =
   initializeApp(firebaseConfig);
 
 const db =
-  getFirestore(app);
+  getDatabase(app);
 
 /* 카운트다운 */
 
@@ -637,14 +636,17 @@ window.checkPassword = function(){
     const lockedContent =
         document.getElementById("lockedContent");
 
-    const correctPassword = "syusyu1116";
+    const correctPassword =
+        "syusyu1116";
 
     if(password === correctPassword){
 
-        lockedContent.style.display = "block";
+        lockedContent.style.display =
+            "block";
 
         document.querySelector(".password-box")
-            .style.display = "none";
+            .style.display =
+            "none";
     }
 
     else{
@@ -655,42 +657,47 @@ window.checkPassword = function(){
 
 /* 편지 불러오기 */
 
-async function loadMessages(){
+function loadMessages(){
 
     const messageList =
       document.getElementById("messageList");
 
-    messageList.innerHTML = "";
+    const messagesRef =
+      ref(db, "messages");
 
-    const q =
-      query(
-        collection(db, "messages"),
-        orderBy("time", "desc")
-      );
+    onValue(messagesRef, (snapshot) => {
 
-    const querySnapshot =
-      await getDocs(q);
+        messageList.innerHTML = "";
 
-    querySnapshot.forEach((doc) => {
+        const data =
+          snapshot.val();
 
-        const data = doc.data();
+        if(data){
 
-        const newMessage =
-          document.createElement("div");
+            const reversed =
+              Object.values(data).reverse();
 
-        newMessage.className =
-          "message-box";
+            reversed.forEach((msg) => {
 
-        newMessage.innerHTML =
-          "💗 " + data.text;
+                const newMessage =
+                  document.createElement("div");
 
-        messageList.appendChild(newMessage);
+                newMessage.className =
+                  "message-box";
+
+                newMessage.innerHTML =
+                  "💗 " + msg.text;
+
+                messageList.appendChild(newMessage);
+            });
+        }
+
     });
 }
 
 /* 편지 저장 */
 
-window.addMessage = async function(){
+window.addMessage = function(){
 
     const input =
       document.getElementById("messageInput");
@@ -702,8 +709,8 @@ window.addMessage = async function(){
         return;
     }
 
-    await addDoc(
-      collection(db, "messages"),
+    push(
+      ref(db, "messages"),
       {
         text: input.value,
         time: Date.now()
@@ -711,8 +718,6 @@ window.addMessage = async function(){
     );
 
     input.value = "";
-
-    loadMessages();
 }
 
 /* 시작 */
