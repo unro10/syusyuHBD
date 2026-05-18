@@ -470,8 +470,6 @@ textarea{
 
     <div id="lockedContent" style="display:none;">
 
-        <!-- 사진 -->
-
         <div class="gallery">
 
             <div class="card">
@@ -487,8 +485,6 @@ textarea{
             </div>
 
         </div>
-
-        <!-- 편지 -->
 
         <div class="letter">
 
@@ -551,7 +547,8 @@ import {
   getDatabase,
   ref,
   push,
-  onValue
+  onValue,
+  remove
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
@@ -582,6 +579,10 @@ const app =
 
 const db =
   getDatabase(app);
+
+/* 관리자 여부 */
+
+let isAdmin = false;
 
 /* 카운트다운 */
 
@@ -636,10 +637,7 @@ window.checkPassword = function(){
     const lockedContent =
         document.getElementById("lockedContent");
 
-    const correctPassword =
-        "syusyu1116";
-
-    if(password === correctPassword){
+    if(password === "syusyu1116"){
 
         lockedContent.style.display =
             "block";
@@ -647,6 +645,22 @@ window.checkPassword = function(){
         document.querySelector(".password-box")
             .style.display =
             "none";
+    }
+
+    else if(password === "admin1116"){
+
+        isAdmin = true;
+
+        lockedContent.style.display =
+            "block";
+
+        document.querySelector(".password-box")
+            .style.display =
+            "none";
+
+        loadMessages();
+
+        alert("관리자 모드 🎀");
     }
 
     else{
@@ -674,10 +688,9 @@ function loadMessages(){
 
         if(data){
 
-            const reversed =
-              Object.values(data).reverse();
-
-            reversed.forEach((msg) => {
+            Object.entries(data)
+            .reverse()
+            .forEach(([key, msg]) => {
 
                 const newMessage =
                   document.createElement("div");
@@ -686,7 +699,28 @@ function loadMessages(){
                   "message-box";
 
                 newMessage.innerHTML =
-                  "💗 " + msg.text;
+                  `💗 ${msg.text}`;
+
+                if(isAdmin){
+
+                    const deleteBtn =
+                      document.createElement("button");
+
+                    deleteBtn.innerText =
+                      "삭제";
+
+                    deleteBtn.style.marginTop =
+                      "15px";
+
+                    deleteBtn.onclick = () => {
+
+                        remove(
+                          ref(db, "messages/" + key)
+                        );
+                    };
+
+                    newMessage.appendChild(deleteBtn);
+                }
 
                 messageList.appendChild(newMessage);
             });
