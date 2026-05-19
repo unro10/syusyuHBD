@@ -26,15 +26,14 @@ body{
     color:#6d4053;
     font-family:'Cinzel', serif;
     overflow-x:hidden;
-    text-align:center;
 }
 
 /* 프레임 */
 
 .frame{
     width:92%;
-    max-width:1150px;
-    margin:40px auto;
+    max-width:1300px;
+    margin:30px auto;
     background:rgba(255,255,255,0.78);
     border:8px double #f4b6c8;
     border-radius:35px;
@@ -50,7 +49,7 @@ body{
 
 .top-decoration{
     text-align:center;
-    font-size:48px;
+    font-size:42px;
     margin-bottom:15px;
     color:#f08dac;
 }
@@ -63,13 +62,13 @@ body{
 
 .title h1{
     font-family:'Great Vibes', cursive;
-    font-size:90px;
+    font-size:92px;
     color:#e77aa0;
     text-shadow:0 0 15px rgba(255,182,193,0.4);
 }
 
 .title p{
-    font-size:22px;
+    font-size:24px;
     letter-spacing:4px;
     margin-top:10px;
 }
@@ -83,13 +82,14 @@ body{
     font-size:18px;
 }
 
-/* 떠다니는 하트 */
+/* 떠다니는 장식 */
 
 .roses{
     position:fixed;
     inset:0;
     pointer-events:none;
     overflow:hidden;
+    z-index:-1;
 }
 
 .rose{
@@ -119,13 +119,12 @@ body{
 /* 카운트다운 */
 
 .countdown-box{
-    margin-top:40px;
+    margin-top:45px;
     background:rgba(255,255,255,0.9);
     border:2px solid #ffd6e4;
     border-radius:30px;
     padding:35px;
     text-align:center;
-    box-shadow:0 5px 15px rgba(255,182,193,0.15);
 }
 
 .countdown-box h2{
@@ -139,7 +138,6 @@ body{
     color:#b85f82;
     font-weight:600;
     letter-spacing:2px;
-    line-height:1.6;
 }
 
 /* 비밀번호 */
@@ -151,7 +149,6 @@ body{
     border-radius:30px;
     padding:40px;
     text-align:center;
-    box-shadow:0 5px 15px rgba(255,182,193,0.15);
 }
 
 .password-box h2{
@@ -201,54 +198,103 @@ button:hover{
     background:#eb8fb0;
 }
 
-/* 사진 */
+/* 갤러리 */
 
 .gallery{
-    margin-top:55px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:30px;
+    margin-top:80px;
+
+    display:flex;
+    flex-wrap:wrap;
+
     justify-content:center;
+    align-items:flex-start;
+
+    gap:60px;
+
+    position:relative;
 }
+
+/* 엽서 카드 */
 
 .card{
+    width:280px;
+
     background:#fff9fb;
+
     border:3px solid #ffd2e0;
-    border-radius:25px;
-    padding:12px;
+
+    border-radius:24px;
+
+    padding:14px;
+
     position:relative;
-    transition:0.35s;
-    box-shadow:0 8px 18px rgba(255,182,193,0.25);
+
+    transition:0.4s;
+
+    box-shadow:
+      0 12px 28px rgba(255,182,193,0.28);
+
+    backdrop-filter:blur(3px);
 }
 
-.card:hover{
-    transform:translateY(-10px) scale(1.02);
+/* 랜덤 느낌 */
+
+.card:nth-child(1){
+    transform:rotate(-7deg);
 }
+
+.card:nth-child(2){
+    transform:rotate(5deg) translateY(25px);
+}
+
+.card:nth-child(3){
+    transform:rotate(-4deg);
+}
+
+.card:nth-child(4){
+    transform:rotate(6deg) translateY(10px);
+}
+
+.card:nth-child(5){
+    transform:rotate(-5deg);
+}
+
+/* hover */
+
+.card:hover{
+    transform:scale(1.05) rotate(0deg);
+    z-index:5;
+}
+
+/* 리본 */
 
 .card::before{
     content:"🎀";
     position:absolute;
-    top:-18px;
+    top:-22px;
     left:50%;
     transform:translateX(-50%);
-    font-size:30px;
+    font-size:34px;
 }
+
+/* 이미지 */
 
 .card img{
     width:100%;
-    height:320px;
-    object-fit:cover;
+    height:auto;
+    display:block;
     border-radius:18px;
+    object-fit:contain;
 }
 
-/* 메인 편지 */
+/* 편지 */
 
 .letter{
-    margin-top:60px;
+    margin-top:70px;
     background:rgba(255,250,252,0.9);
     border:2px dashed #efadc3;
     border-radius:30px;
-    padding:40px;
+    padding:45px;
     line-height:2.2;
     text-align:center;
     font-size:18px;
@@ -276,7 +322,7 @@ button:hover{
 /* 방명록 */
 
 .guestbook{
-    margin-top:60px;
+    margin-top:70px;
     background:rgba(255,255,255,0.88);
     border:2px solid #ffd4e3;
     border-radius:35px;
@@ -290,20 +336,17 @@ button:hover{
     font-size:36px;
 }
 
-/* 배치 */
+/* 레이아웃 */
 
 .guestbook-container{
     display:flex;
     gap:35px;
-    align-items:stretch;
 }
 
 /* 입력 */
 
 .input-area{
     flex:1;
-    display:flex;
-    flex-direction:column;
 }
 
 /* 전시 */
@@ -316,10 +359,9 @@ button:hover{
     border:2px solid #ffd6e4;
     min-height:420px;
     overflow-y:auto;
-    text-align:center;
 }
 
-/* textarea */
+/* 입력창 */
 
 textarea{
     width:100%;
@@ -347,24 +389,9 @@ textarea{
     border:2px dashed #ffd4e3;
     margin-bottom:18px;
     line-height:2;
-    animation:fadeIn 0.5s ease;
-    box-shadow:0 6px 15px rgba(255,182,193,0.15);
-    font-size:16px;
-    word-break:break-word;
     text-align:center;
-}
-
-@keyframes fadeIn{
-
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    box-shadow:0 6px 15px rgba(255,182,193,0.15);
+    word-break:break-word;
 }
 
 /* 푸터 */
@@ -382,10 +409,7 @@ textarea{
 @media(max-width:900px){
 
     .frame{
-        width:95%;
         padding:25px;
-        margin:20px auto;
-        border-radius:25px;
     }
 
     .guestbook-container{
@@ -393,7 +417,7 @@ textarea{
     }
 
     .messages-area{
-        min-height:250px;
+        min-height:260px;
     }
 
     textarea{
@@ -401,36 +425,41 @@ textarea{
     }
 
     .title h1{
-        font-size:55px;
-    }
-
-    #countdown{
-        font-size:24px;
+        font-size:62px;
     }
 
     .top-decoration{
         font-size:28px;
     }
 
+    #countdown{
+        font-size:28px;
+    }
+
     .gallery{
-        grid-template-columns:1fr;
+        gap:35px;
     }
 
-    .card img{
-        height:250px;
-    }
-
-    button{
+    .card{
         width:100%;
+        max-width:320px;
+    }
+
+    .card:nth-child(1),
+    .card:nth-child(2),
+    .card:nth-child(3),
+    .card:nth-child(4),
+    .card:nth-child(5){
+
+        transform:none;
     }
 
 }
 
 </style>
 </head>
-<body>
 
-<!-- 떠다니는 하트 -->
+<body>
 
 <div class="roses">
 
@@ -457,8 +486,6 @@ textarea{
         November 16, 2026
     </div>
 
-    <!-- 카운트다운 -->
-
     <div class="countdown-box">
 
         <h2>🎂 Countdown to Syusyu Day 🎂</h2>
@@ -468,16 +495,36 @@ textarea{
         </div>
 
     </div>
+        <div class="gallery">
 
-    <!-- 비밀번호 -->
+            <div class="card">
+                <img src="1.jpeg">
+            </div>
 
+            <div class="card">
+                <img src="2.jpeg">
+            </div>
+
+            <div class="card">
+                <img src="3.jpeg">
+            </div>
+
+            <div class="card">
+                <img src="4.jpeg">
+            </div>
+
+            <div class="card">
+                <img src="5.jpeg">
+            </div>
+
+        </div>
     <div class="password-box">
 
         <h2>🎀 Secret Birthday Archive 🎀</h2>
 
         <p>
             비밀번호를 입력하면<br>
-            특별한 추억이 열려요 ✨
+            편지가 열려요 ✨
         </p>
 
         <input
@@ -494,35 +541,7 @@ textarea{
 
     </div>
 
-    <!-- 잠긴 콘텐츠 -->
-
     <div id="lockedContent" style="display:none;">
-
-        <!-- 사진 5개 -->
-
-        <div class="gallery">
-
-            <div class="card">
-                <img src="1.jpeg" alt="1">
-            </div>
-
-            <div class="card">
-                <img src="2.jpeg" alt="2">
-            </div>
-
-            <div class="card">
-                <img src="3.jpeg" alt="3">
-            </div>
-
-            <div class="card">
-                <img src="4.jpeg" alt="4">
-            </div>
-
-            <div class="card">
-                <img src="5.jpeg" alt="5">
-            </div>
-
-        </div>
 
         <div class="letter">
 
@@ -537,8 +556,6 @@ textarea{
 
     </div>
 
-    <!-- 방명록 -->
-
     <div class="guestbook">
 
         <h2>💌 Birthday Letters 💌</h2>
@@ -549,7 +566,7 @@ textarea{
 
                 <textarea
                     id="messageInput"
-                    placeholder="🎀편지를 남겨주세요🎀"
+                    placeholder="🎀 여러분도 편지를 남길 수 있어요 🎀"
                 ></textarea>
 
                 <button onclick="addMessage()">
@@ -590,35 +607,27 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
-/* Firebase 설정 */
-
 const firebaseConfig = {
 
-  apiKey: "AIzaSyAyYL2YTdiiYSpQWh06GOOtudCU6c7fVuY",
+  apiKey: "YOUR_API_KEY",
 
-  authDomain: "syusyu-birthday.firebaseapp.com",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
 
-  databaseURL: "https://syusyu-birthday-default-rtdb.firebaseio.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
 
-  projectId: "syusyu-birthday",
+  projectId: "YOUR_PROJECT",
 
-  storageBucket: "syusyu-birthday.firebasestorage.app",
+  storageBucket: "YOUR_PROJECT.firebasestorage.app",
 
-  messagingSenderId: "100415996978",
+  messagingSenderId: "000000000000",
 
-  appId: "1:100415996978:web:9df17fd8fafacac1dbe82b"
+  appId: "YOUR_APP_ID"
 
 };
 
-/* Firebase 시작 */
+const app = initializeApp(firebaseConfig);
 
-const app =
-  initializeApp(firebaseConfig);
-
-const db =
-  getDatabase(app);
-
-/* 관리자 여부 */
+const db = getDatabase(app);
 
 let isAdmin = false;
 
@@ -677,26 +686,20 @@ window.checkPassword = function(){
 
     if(password === "syusyu1116"){
 
-        lockedContent.style.display =
-            "block";
+        lockedContent.style.display = "block";
 
         document.querySelector(".password-box")
-            .style.display =
-            "none";
+            .style.display = "none";
     }
 
     else if(password === "admin1116"){
 
         isAdmin = true;
 
-        lockedContent.style.display =
-            "block";
+        lockedContent.style.display = "block";
 
         document.querySelector(".password-box")
-            .style.display =
-            "none";
-
-        loadMessages();
+            .style.display = "none";
 
         alert("관리자 모드 🎀");
     }
@@ -721,8 +724,7 @@ function loadMessages(){
 
         messageList.innerHTML = "";
 
-        const data =
-          snapshot.val();
+        const data = snapshot.val();
 
         if(data){
 
@@ -747,9 +749,6 @@ function loadMessages(){
                     deleteBtn.innerText =
                       "삭제";
 
-                    deleteBtn.style.marginTop =
-                      "15px";
-
                     deleteBtn.onclick = () => {
 
                         remove(
@@ -761,10 +760,13 @@ function loadMessages(){
                 }
 
                 messageList.appendChild(newMessage);
+
             });
+
         }
 
     });
+
 }
 
 /* 편지 저장 */
@@ -791,8 +793,6 @@ window.addMessage = function(){
 
     input.value = "";
 }
-
-/* 시작 */
 
 loadMessages();
 
