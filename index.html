@@ -140,64 +140,6 @@ body{
     letter-spacing:2px;
 }
 
-/* 비밀번호 */
-
-.password-box{
-    margin-top:45px;
-    background:rgba(255,255,255,0.9);
-    border:2px solid #ffd6e4;
-    border-radius:30px;
-    padding:40px;
-    text-align:center;
-}
-
-.password-box h2{
-    color:#df7ca1;
-    margin-bottom:15px;
-    font-size:32px;
-}
-
-.password-box p{
-    line-height:1.8;
-    margin-bottom:25px;
-    color:#9b6076;
-}
-
-.password-box input{
-    width:260px;
-    max-width:90%;
-    padding:14px 20px;
-    border:none;
-    border-radius:999px;
-    outline:none;
-    background:#fff8fb;
-    border:2px solid #ffd4e3;
-    font-size:16px;
-    text-align:center;
-    color:#7a4e63;
-    font-family:'Cinzel', serif;
-}
-
-/* 버튼 */
-
-button{
-    margin-top:20px;
-    padding:15px 32px;
-    border:none;
-    border-radius:999px;
-    background:#f6a9c2;
-    color:white;
-    font-size:17px;
-    cursor:pointer;
-    transition:0.3s;
-    font-family:'Cinzel', serif;
-}
-
-button:hover{
-    transform:scale(1.05);
-    background:#eb8fb0;
-}
-
 /* 갤러리 */
 
 .gallery{
@@ -285,6 +227,64 @@ button:hover{
     display:block;
     border-radius:18px;
     object-fit:contain;
+}
+
+/* 비밀번호 */
+
+.password-box{
+    margin-top:55px;
+    background:rgba(255,255,255,0.9);
+    border:2px solid #ffd6e4;
+    border-radius:30px;
+    padding:40px;
+    text-align:center;
+}
+
+.password-box h2{
+    color:#df7ca1;
+    margin-bottom:15px;
+    font-size:32px;
+}
+
+.password-box p{
+    line-height:1.8;
+    margin-bottom:25px;
+    color:#9b6076;
+}
+
+.password-box input{
+    width:260px;
+    max-width:90%;
+    padding:14px 20px;
+    border:none;
+    border-radius:999px;
+    outline:none;
+    background:#fff8fb;
+    border:2px solid #ffd4e3;
+    font-size:16px;
+    text-align:center;
+    color:#7a4e63;
+    font-family:'Cinzel', serif;
+}
+
+/* 버튼 */
+
+button{
+    margin-top:20px;
+    padding:15px 32px;
+    border:none;
+    border-radius:999px;
+    background:#f6a9c2;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:0.3s;
+    font-family:'Cinzel', serif;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#eb8fb0;
 }
 
 /* 편지 */
@@ -409,7 +409,9 @@ textarea{
 @media(max-width:900px){
 
     .frame{
-        padding:25px;
+        width:96%;
+        padding:20px;
+        margin:15px auto;
     }
 
     .guestbook-container{
@@ -422,36 +424,102 @@ textarea{
 
     textarea{
         height:220px;
+        font-size:15px;
     }
 
     .title h1{
-        font-size:62px;
+        font-size:56px;
+        line-height:1;
+    }
+
+    .title p{
+        font-size:18px;
+        letter-spacing:2px;
     }
 
     .top-decoration{
-        font-size:28px;
+        font-size:24px;
+        line-height:1.5;
+    }
+
+    .date{
+        font-size:15px;
     }
 
     #countdown{
-        font-size:28px;
+        font-size:24px;
+        line-height:1.5;
+    }
+
+    .countdown-box,
+    .password-box,
+    .guestbook,
+    .letter{
+        padding:24px;
+    }
+
+    .countdown-box h2,
+    .password-box h2,
+    .guestbook h2{
+        font-size:25px;
     }
 
     .gallery{
-        gap:35px;
+        gap:22px;
+        margin-top:55px;
     }
 
     .card{
-        width:100%;
+        width:78vw;
         max-width:320px;
+        min-width:220px;
     }
 
-    .card:nth-child(1),
-    .card:nth-child(2),
-    .card:nth-child(3),
-    .card:nth-child(4),
-    .card:nth-child(5){
+    /* PC 감성 유지 */
 
-        transform:none;
+    .card:nth-child(1){
+        transform:rotate(-5deg);
+    }
+
+    .card:nth-child(2){
+        transform:rotate(4deg) translateY(10px);
+    }
+
+    .card:nth-child(3){
+        transform:rotate(-3deg);
+    }
+
+    .card:nth-child(4){
+        transform:rotate(5deg) translateY(8px);
+    }
+
+    .card:nth-child(5){
+        transform:rotate(-4deg);
+    }
+
+    .card:hover{
+        transform:scale(1.03);
+    }
+
+    .card img{
+        width:100%;
+        height:auto;
+        object-fit:contain;
+    }
+
+    .letter{
+        font-size:15px;
+        line-height:2;
+    }
+
+    button{
+        width:100%;
+        font-size:16px;
+        padding:14px 20px;
+    }
+
+    .password-box input{
+        width:100%;
     }
 
 }
@@ -495,29 +563,35 @@ textarea{
         </div>
 
     </div>
-        <div class="gallery">
 
-            <div class="card">
-                <img src="1.jpeg">
-            </div>
+    <!-- 사진 -->
 
-            <div class="card">
-                <img src="2.jpeg">
-            </div>
+    <div class="gallery">
 
-            <div class="card">
-                <img src="3.jpeg">
-            </div>
-
-            <div class="card">
-                <img src="4.jpeg">
-            </div>
-
-            <div class="card">
-                <img src="5.jpeg">
-            </div>
-
+        <div class="card">
+            <img src="1.jpeg">
         </div>
+
+        <div class="card">
+            <img src="2.jpeg">
+        </div>
+
+        <div class="card">
+            <img src="3.jpeg">
+        </div>
+
+        <div class="card">
+            <img src="4.jpeg">
+        </div>
+
+        <div class="card">
+            <img src="5.jpeg">
+        </div>
+
+    </div>
+
+    <!-- 비밀번호 -->
+
     <div class="password-box">
 
         <h2>🎀 Secret Birthday Archive 🎀</h2>
@@ -541,6 +615,8 @@ textarea{
 
     </div>
 
+    <!-- 편지 -->
+
     <div id="lockedContent" style="display:none;">
 
         <div class="letter">
@@ -555,6 +631,8 @@ textarea{
         </div>
 
     </div>
+
+    <!-- 방명록 -->
 
     <div class="guestbook">
 
