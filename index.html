@@ -26,6 +26,7 @@ body{
     color:#6d4053;
     font-family:'Cinzel', serif;
     overflow-x:hidden;
+    text-align:center;
 }
 
 /* 프레임 */
@@ -205,8 +206,9 @@ button:hover{
 .gallery{
     margin-top:55px;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:30px;
+    justify-content:center;
 }
 
 .card{
@@ -314,6 +316,7 @@ button:hover{
     border:2px solid #ffd6e4;
     min-height:420px;
     overflow-y:auto;
+    text-align:center;
 }
 
 /* textarea */
@@ -332,6 +335,7 @@ textarea{
     border:2px solid #ffd4e3;
     font-family:'Cinzel', serif;
     line-height:1.8;
+    text-align:center;
 }
 
 /* 편지 카드 */
@@ -347,6 +351,7 @@ textarea{
     box-shadow:0 6px 15px rgba(255,182,193,0.15);
     font-size:16px;
     word-break:break-word;
+    text-align:center;
 }
 
 @keyframes fadeIn{
@@ -376,6 +381,13 @@ textarea{
 
 @media(max-width:900px){
 
+    .frame{
+        width:95%;
+        padding:25px;
+        margin:20px auto;
+        border-radius:25px;
+    }
+
     .guestbook-container{
         flex-direction:column;
     }
@@ -389,11 +401,27 @@ textarea{
     }
 
     .title h1{
-        font-size:65px;
+        font-size:55px;
     }
 
     #countdown{
+        font-size:24px;
+    }
+
+    .top-decoration{
         font-size:28px;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .card img{
+        height:250px;
+    }
+
+    button{
+        width:100%;
     }
 
 }
@@ -470,18 +498,28 @@ textarea{
 
     <div id="lockedContent" style="display:none;">
 
+        <!-- 사진 5개 -->
+
         <div class="gallery">
 
             <div class="card">
-                <img src="1.jpg" alt="photo1">
+                <img src="1.jpg" alt="1">
             </div>
 
             <div class="card">
-                <img src="2.jpg" alt="photo2">
+                <img src="2.jpg" alt="2">
             </div>
 
             <div class="card">
-                <img src="3.jpg" alt="photo3">
+                <img src="3.jpg" alt="3">
+            </div>
+
+            <div class="card">
+                <img src="4.jpg" alt="4">
+            </div>
+
+            <div class="card">
+                <img src="5.jpg" alt="5">
             </div>
 
         </div>
